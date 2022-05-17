@@ -1,0 +1,43 @@
+server.port: 8009
+
+spring:
+  cloud:
+    loadbalancer.ribbon.enable: true
+
+  application:
+    name: shopping-cart-command-service
+
+  data.mongodb:
+    host: localhost
+    port: 27010
+    database: shopping-cart-command
+    authentication-database: admin
+    username: root
+    password: testd
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: earliest
+      group-id: product
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties.spring.json.trusted.packages: "*"
+
+    # streams.properties.spring.json.use.type.headers: true
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+    # zipkin:
+    #   base-url: http://localhost:9411/
+
+  # sleuth:
+  #   sampler:
+  #     probability: 1 #100% (default = 10%)
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
