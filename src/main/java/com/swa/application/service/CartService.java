@@ -39,10 +39,34 @@ public class CartService {
 
     public void create(ShoppingCart cart) throws DBException {
         try {
+            List<String> errorMsgs = new ArrayList<>();
+            boolean stockNotAvailable = false;
+            for (CartLine cartLine : cart.getCartLines()) {
+                Product p = cartLine.getProduct();
+                int productStock = getProductStock(p.getProductNumber());
+                if (cartLine.getQuantity() > productStock) {
+                    errorMsgs.add(
+                            "Selected amount of product "
+                                    + p + " is not available in Stock. Only "
+                                    +  productStock + " are available"
+                    );
+
+                    stockNotAvailable = true;
+                }
+            }
+
+            if (stockNotAvailable == true) {
+                throw new DBException(
+                        "Sorry but some products are out of stock: \n" +
+                                String.join(" \n", errorMsgs)
+                );
+            }
+
             shoppingCartRepository.save(cart);
             eventService.sendCartCreatedMsg(cart);
+
         } catch (Exception e) {
-            throw new DBException("Cannot create cart.");
+            throw new DBException(e.getMessage());
         }
     }
 
@@ -93,7 +117,7 @@ public class CartService {
             if (stockNotAvailable == true) {
                 throw new DBException(
                         "Sorry but some products are out of stock: \n" +
-                                String.join(" \n" + errorMsgs)
+                                String.join(" \n", errorMsgs)
                 );
             }
             delete(cart.getShoppingCartNumber());
