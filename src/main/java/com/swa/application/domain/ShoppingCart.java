@@ -22,7 +22,7 @@ public class ShoppingCart {
 
     public boolean removeProduct(String productNumber) {
         var cartLine = cartLines.stream()
-                .filter(cL -> cL.getProduct().getProductNumber() == productNumber)
+                .filter(cL -> cL.getProduct().getProductNumber().equals(productNumber))
                 .findFirst().orElse(null);
 
         if(cartLine != null) {
@@ -44,7 +44,7 @@ public class ShoppingCart {
 
     public boolean changeQuantity(String productNumber, int desiredQuantity) {
         var cartLine = cartLines.stream()
-                .filter(cL -> cL.getProduct().getProductNumber() == productNumber)
+                .filter(cL -> cL.getProduct().getProductNumber().equals(productNumber))
                 .findFirst().orElse(null);
         if(cartLine != null) {
             cartLine.setQuantity(desiredQuantity);
@@ -53,6 +53,5 @@ public class ShoppingCart {
             return false;
         }
     }
-
 
 }

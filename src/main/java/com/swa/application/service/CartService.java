@@ -2,7 +2,8 @@ package com.swa.application.service;
 
 import com.swa.application.domain.Customer;
 import com.swa.application.dto.ProductChangeDto;
-import com.swa.application.dto.ProductForStock;
+import com.swa.application.dto.ProductDto;
+import com.swa.application.integration.EventService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +24,23 @@ import com.swa.application.repository.ShoppingCartRepository;
 
 @Service
 public class CartService {
-    @Autowired
-    private ShoppingCartRepository shoppingCartRepository;
-
-    @Autowired
-    private ProductFeignClient productService;
+    private  ShoppingCartRepository shoppingCartRepository;
+    private  EventService eventService;
+    private  ProductFeignClient productService;
 
     private static final Logger log = LoggerFactory.getLogger(CartService.class);
+
+    @Autowired
+    public CartService(EventService eventService, ShoppingCartRepository shoppingCartRepository, ProductFeignClient productService) {
+        this.eventService = eventService;
+        this.shoppingCartRepository = shoppingCartRepository;
+        this.productService = productService;
+    }
 
     public void create(ShoppingCart cart) throws DBException {
         try {
             shoppingCartRepository.save(cart);
+            eventService.sendCartCreatedMsg(cart);
         } catch (Exception e) {
             throw new DBException("Cannot create cart.");
         }
@@ -42,6 +49,7 @@ public class CartService {
     public void update(ShoppingCart cart) throws DBException {
         try {
             shoppingCartRepository.save(cart);
+            eventService.sendCartUpdatedMsg(cart);
         } catch (Exception e) {
             throw new DBException("Can't update shopping cart");
         }
@@ -52,6 +60,7 @@ public class CartService {
             var cart = shoppingCartRepository.findById(cartNumber)
                     .orElseThrow(() -> new DBException("Shopping cart by the given number not found"));
             shoppingCartRepository.delete(cart);
+            eventService.sendCartDeletedMsg(cart);
         } catch (Exception e){
             throw new DBException(e.getMessage());
         }
@@ -70,7 +79,7 @@ public class CartService {
             for (CartLine cartLine : cart.getCartLines()) {
                 Product p = cartLine.getProduct();
                 int productStock = getProductStock(p.getProductNumber());
-                if (cartLine.getQuantity() < productStock) {
+                if (cartLine.getQuantity() > productStock) {
                     errorMsgs.add(
                             "Selected amount of product "
                             + p + " is not available in Stock. Only "
@@ -87,7 +96,8 @@ public class CartService {
                                 String.join(" \n" + errorMsgs)
                 );
             }
-            shoppingCartRepository.delete(cart);
+            delete(cart.getShoppingCartNumber());
+            eventService.sendCartCheckoutMsg(cart);
         } catch(Exception e) {
             throw new DBException(e.getMessage());
         }
@@ -111,6 +121,7 @@ public class CartService {
             if(!productAdded) {
                 throw new DBException("Error occurred when adding product. Please try again");
             }
+            update(cart);
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
@@ -124,6 +135,7 @@ public class CartService {
             if(!productRemoved) {
                 throw new DBException("Error occurred when removing product. Please try again");
             }
+            update(cart);
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
@@ -142,6 +154,7 @@ public class CartService {
             if(!qtyChanged) {
                 throw new DBException("Error occurred when updated product quantity. Please try again");
             }
+            update(cart);
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
@@ -156,6 +169,6 @@ public class CartService {
     @RibbonClient(name="product-service")
     interface ProductFeignClient{
         @RequestMapping("/api/v1/products/{productNumber}")
-        ProductForStock getProduct(@PathVariable("productNumber") String productNumber);
+        ProductDto getProduct(@PathVariable("productNumber") String productNumber);
     }
 }

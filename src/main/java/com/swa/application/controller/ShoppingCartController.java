@@ -69,5 +69,15 @@ public class ShoppingCartController {
         }
     }
 
+    @DeleteMapping("/{cartNumber}")
+    public ResponseEntity<String> delete(@PathVariable String cartNumber) {
+        try {
+            cartService.delete(cartNumber);
+            return new ResponseEntity<>("Checked out successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
 }

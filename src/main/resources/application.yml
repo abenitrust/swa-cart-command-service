@@ -19,18 +19,18 @@ spring:
     bootstrap-servers: localhost:9092
     consumer:
       auto-offset-reset: earliest
-      group-id: product
+      group-id: command
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties.spring.json.trusted.packages: "*"
-
     # streams.properties.spring.json.use.type.headers: true
 
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
-    # zipkin:
+
+  # zipkin:
     #   base-url: http://localhost:9411/
 
   # sleuth:
@@ -41,3 +41,8 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8000/eureka/
+
+event.topics:
+    cart-created: "CART-CREATED"
+    cart-updated: "CART-UPDATED"
+    cart-deleted: "CART-DELETED"
