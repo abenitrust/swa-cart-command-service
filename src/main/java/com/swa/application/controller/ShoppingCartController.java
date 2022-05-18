@@ -62,8 +62,7 @@ public class ShoppingCartController {
     @PostMapping("/{cartNumber}/checkout")
     public ResponseEntity<String> checkout(@PathVariable String cartNumber) {
         try{
-            cartService.checkout(cartNumber);
-            return new ResponseEntity<>("Checked out successfully", HttpStatus.OK);
+            return new ResponseEntity<>(cartService.checkout(cartNumber), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

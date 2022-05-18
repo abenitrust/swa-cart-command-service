@@ -1,0 +1,124 @@
+2022-05-17 23:09:37,858 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.1.7.Final
+2022-05-17 23:09:38,633 INFO org.springframework.cloud.config.client.ConfigServicePropertySourceLocator [main] Fetching config from server at : http://localhost:8003
+2022-05-17 23:09:39,435 INFO org.springframework.cloud.config.client.ConfigServicePropertySourceLocator [main] Located environment: name=shopping-cart-command-service, profiles=[default], label=null, version=6beebd0254f32a276770508abbeae0daef39cce7, state=null
+2022-05-17 23:09:39,436 INFO org.springframework.cloud.bootstrap.config.PropertySourceBootstrapConfiguration [main] Located property source: [BootstrapPropertySource {name='bootstrapProperties-configClient'}, BootstrapPropertySource {name='bootstrapProperties-https://github.com/abenitrust/swa_config/shopping-cart-command-service.yml'}]
+2022-05-17 23:09:39,461 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-05-17 23:09:40,019 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-17 23:09:40,070 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 49ms. Found 1 MongoDB repository interfaces.
+2022-05-17 23:09:40,353 INFO org.springframework.cloud.context.scope.GenericScope [main] BeanFactory id=5895182d-12eb-3dcb-a600-d1a95f2ffd58
+2022-05-17 23:09:40,774 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8009 (http)
+2022-05-17 23:09:40,780 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8009"]
+2022-05-17 23:09:40,780 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-17 23:09:40,781 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.46]
+2022-05-17 23:09:40,889 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-17 23:09:40,889 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1415 ms
+2022-05-17 23:09:41,644 WARN org.springframework.cloud.sleuth.zipkin2.ZipkinAutoConfiguration [main] Check result of the [RestTemplateSender{http://localhost:9411/api/v2/spans}] contains an error [CheckResult{ok=false, error=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:9411/api/v2/spans": connect timed out; nested exception is java.net.SocketTimeoutException: connect timed out}]
+2022-05-17 23:09:41,947 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27010], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-17 23:09:41,986 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='628471854179655cd0a94d71', description='null'}-localhost:27010] Opened connection [connectionId{localValue:1, serverValue:4}] to localhost:27010
+2022-05-17 23:09:41,992 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='628471854179655cd0a94d71', description='null'}-localhost:27010] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27010, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=3705200}
+2022-05-17 23:09:42,026 WARN org.springframework.data.convert.CustomConversions [main] Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-05-17 23:09:42,139 WARN org.springframework.data.convert.CustomConversions [main] Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-05-17 23:09:42,589 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
+2022-05-17 23:09:42,589 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-05-17 23:09:42,592 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
+2022-05-17 23:09:42,593 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-05-17 23:09:42,800 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2022-05-17 23:09:44,056 INFO org.springframework.cloud.netflix.eureka.config.DiscoveryClientOptionalArgsConfiguration [main] Eureka HTTP Client uses Jersey
+2022-05-17 23:09:44,508 WARN org.springframework.cloud.loadbalancer.config.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger [main] You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2022-05-17 23:09:45,197 INFO org.springframework.cloud.netflix.eureka.InstanceInfoFactory [main] Setting initial instance status as: STARTING
+2022-05-17 23:09:45,221 INFO com.netflix.discovery.DiscoveryClient [main] Initializing Eureka in region us-east-1
+2022-05-17 23:09:45,370 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using JSON encoding codec LegacyJacksonJson
+2022-05-17 23:09:45,371 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using JSON decoding codec LegacyJacksonJson
+2022-05-17 23:09:45,488 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using XML encoding codec XStreamXml
+2022-05-17 23:09:45,488 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using XML decoding codec XStreamXml
+2022-05-17 23:09:45,614 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [main] Resolving eureka endpoints via configuration
+2022-05-17 23:09:45,911 INFO com.netflix.discovery.DiscoveryClient [main] Disable delta property : false
+2022-05-17 23:09:45,911 INFO com.netflix.discovery.DiscoveryClient [main] Single vip registry refresh property : null
+2022-05-17 23:09:45,911 INFO com.netflix.discovery.DiscoveryClient [main] Force full registry fetch : false
+2022-05-17 23:09:45,911 INFO com.netflix.discovery.DiscoveryClient [main] Application is null : false
+2022-05-17 23:09:45,912 INFO com.netflix.discovery.DiscoveryClient [main] Registered Applications size is zero : true
+2022-05-17 23:09:45,912 INFO com.netflix.discovery.DiscoveryClient [main] Application version is -1: true
+2022-05-17 23:09:45,912 INFO com.netflix.discovery.DiscoveryClient [main] Getting all instance registry info from the eureka server
+2022-05-17 23:09:46,000 INFO com.netflix.discovery.DiscoveryClient [main] The response status is 200
+2022-05-17 23:09:46,002 INFO com.netflix.discovery.DiscoveryClient [main] Starting heartbeat executor: renew interval is: 30
+2022-05-17 23:09:46,004 INFO com.netflix.discovery.InstanceInfoReplicator [main] InstanceInfoReplicator onDemand update allowed rate per min is 4
+2022-05-17 23:09:46,008 INFO com.netflix.discovery.DiscoveryClient [main] Discovery Client initialized at timestamp 1652846986007 with initial instances count: 1
+2022-05-17 23:09:46,015 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry [main] Registering application SHOPPING-CART-COMMAND-SERVICE with eureka with status UP
+2022-05-17 23:09:46,016 INFO com.netflix.discovery.DiscoveryClient$3 [main] Saw local status change event StatusChangeEvent [timestamp=1652846986016, current=UP, previous=STARTING]
+2022-05-17 23:09:46,018 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_SHOPPING-CART-COMMAND-SERVICE/DESKTOP-4JQFJ2O.mshome.net:shopping-cart-command-service:8009: registering service...
+2022-05-17 23:09:46,018 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8009"]
+2022-05-17 23:09:46,041 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8009 (http) with context path ''
+2022-05-17 23:09:46,041 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration [main] Updating port to 8009
+2022-05-17 23:09:46,051 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_SHOPPING-CART-COMMAND-SERVICE/DESKTOP-4JQFJ2O.mshome.net:shopping-cart-command-service:8009 - registration status: 204
+2022-05-17 23:09:46,486 INFO org.springframework.boot.StartupInfoLogger [main] Started Application in 9.514 seconds (JVM running for 10.904)
+2022-05-17 23:14:45,928 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
+2022-05-17 23:19:45,937 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
+2022-05-17 23:24:45,946 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
+2022-05-17 23:29:45,959 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
+2022-05-17 23:34:45,976 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
+2022-05-17 23:38:14,490 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry [SpringContextShutdownHook] Unregistering application SHOPPING-CART-COMMAND-SERVICE with eureka with status DOWN
+2022-05-17 23:38:14,491 WARN com.netflix.discovery.DiscoveryClient$3 [SpringContextShutdownHook] Saw local status change event StatusChangeEvent [timestamp=1652848694491, current=DOWN, previous=UP]
+2022-05-17 23:38:14,492 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_SHOPPING-CART-COMMAND-SERVICE/DESKTOP-4JQFJ2O.mshome.net:shopping-cart-command-service:8009: registering service...
+2022-05-17 23:38:14,511 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_SHOPPING-CART-COMMAND-SERVICE/DESKTOP-4JQFJ2O.mshome.net:shopping-cart-command-service:8009 - registration status: 204
+2022-05-17 23:38:14,917 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [SpringContextShutdownHook] Shutting down ExecutorService 'applicationTaskExecutor'
+2022-05-17 23:38:15,997 INFO com.netflix.discovery.DiscoveryClient [SpringContextShutdownHook] Shutting down DiscoveryClient ...
+2022-05-17 23:38:19,001 WARN com.netflix.discovery.TimedSupervisorTask [DiscoveryClient-1] task supervisor shutting down, can't accept the task
+2022-05-17 23:38:19,006 INFO com.netflix.discovery.DiscoveryClient [SpringContextShutdownHook] Unregistering ...
+2022-05-17 23:38:19,018 INFO com.netflix.discovery.DiscoveryClient [SpringContextShutdownHook] DiscoveryClient_SHOPPING-CART-COMMAND-SERVICE/DESKTOP-4JQFJ2O.mshome.net:shopping-cart-command-service:8009 - deregister  status: 200
+2022-05-17 23:38:19,044 INFO com.netflix.discovery.DiscoveryClient [SpringContextShutdownHook] Completed shut down of DiscoveryClient
+2022-05-17 23:57:53,818 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.1.7.Final
+2022-05-17 23:57:54,582 INFO org.springframework.cloud.config.client.ConfigServicePropertySourceLocator [main] Fetching config from server at : http://localhost:8003
+2022-05-17 23:57:55,386 INFO org.springframework.cloud.config.client.ConfigServicePropertySourceLocator [main] Located environment: name=shopping-cart-command-service, profiles=[default], label=null, version=6beebd0254f32a276770508abbeae0daef39cce7, state=null
+2022-05-17 23:57:55,388 INFO org.springframework.cloud.bootstrap.config.PropertySourceBootstrapConfiguration [main] Located property source: [BootstrapPropertySource {name='bootstrapProperties-configClient'}, BootstrapPropertySource {name='bootstrapProperties-https://github.com/abenitrust/swa_config/shopping-cart-command-service.yml'}]
+2022-05-17 23:57:55,427 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-05-17 23:57:56,002 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-17 23:57:56,059 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 54ms. Found 1 MongoDB repository interfaces.
+2022-05-17 23:57:56,337 INFO org.springframework.cloud.context.scope.GenericScope [main] BeanFactory id=fa489e55-8920-38ae-a53c-e350b1e048ca
+2022-05-17 23:57:57,038 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8009 (http)
+2022-05-17 23:57:57,046 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8009"]
+2022-05-17 23:57:57,047 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-17 23:57:57,048 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.46]
+2022-05-17 23:57:57,274 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-17 23:57:57,275 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1831 ms
+2022-05-17 23:57:58,060 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27010], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-17 23:57:58,116 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62847cd60cf08336a551735d', description='null'}-localhost:27010] Opened connection [connectionId{localValue:1, serverValue:14}] to localhost:27010
+2022-05-17 23:57:58,125 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62847cd60cf08336a551735d', description='null'}-localhost:27010] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27010, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=4142300}
+2022-05-17 23:57:58,189 WARN org.springframework.data.convert.CustomConversions [main] Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-05-17 23:57:58,303 WARN org.springframework.data.convert.CustomConversions [main] Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-05-17 23:57:58,808 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
+2022-05-17 23:57:58,809 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-05-17 23:57:58,813 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
+2022-05-17 23:57:58,814 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-05-17 23:57:59,073 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2022-05-17 23:58:00,335 INFO org.springframework.cloud.netflix.eureka.config.DiscoveryClientOptionalArgsConfiguration [main] Eureka HTTP Client uses Jersey
+2022-05-17 23:58:00,817 WARN org.springframework.cloud.loadbalancer.config.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger [main] You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2022-05-17 23:58:01,473 INFO org.springframework.cloud.netflix.eureka.InstanceInfoFactory [main] Setting initial instance status as: STARTING
+2022-05-17 23:58:01,547 INFO com.netflix.discovery.DiscoveryClient [main] Initializing Eureka in region us-east-1
+2022-05-17 23:58:01,686 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using JSON encoding codec LegacyJacksonJson
+2022-05-17 23:58:01,687 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using JSON decoding codec LegacyJacksonJson
+2022-05-17 23:58:01,839 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using XML encoding codec XStreamXml
+2022-05-17 23:58:01,840 INFO com.netflix.discovery.provider.DiscoveryJerseyProvider [main] Using XML decoding codec XStreamXml
+2022-05-17 23:58:01,976 INFO com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver [main] Resolving eureka endpoints via configuration
+2022-05-17 23:58:02,267 INFO com.netflix.discovery.DiscoveryClient [main] Disable delta property : false
+2022-05-17 23:58:02,268 INFO com.netflix.discovery.DiscoveryClient [main] Single vip registry refresh property : null
+2022-05-17 23:58:02,268 INFO com.netflix.discovery.DiscoveryClient [main] Force full registry fetch : false
+2022-05-17 23:58:02,269 INFO com.netflix.discovery.DiscoveryClient [main] Application is null : false
+2022-05-17 23:58:02,269 INFO com.netflix.discovery.DiscoveryClient [main] Registered Applications size is zero : true
+2022-05-17 23:58:02,270 INFO com.netflix.discovery.DiscoveryClient [main] Application version is -1: true
+2022-05-17 23:58:02,270 INFO com.netflix.discovery.DiscoveryClient [main] Getting all instance registry info from the eureka server
+2022-05-17 23:58:02,361 INFO com.netflix.discovery.DiscoveryClient [main] The response status is 200
+2022-05-17 23:58:02,364 INFO com.netflix.discovery.DiscoveryClient [main] Starting heartbeat executor: renew interval is: 30
+2022-05-17 23:58:02,367 INFO com.netflix.discovery.InstanceInfoReplicator [main] InstanceInfoReplicator onDemand update allowed rate per min is 4
+2022-05-17 23:58:02,370 INFO com.netflix.discovery.DiscoveryClient [main] Discovery Client initialized at timestamp 1652849882370 with initial instances count: 3
+2022-05-17 23:58:02,378 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry [main] Registering application SHOPPING-CART-COMMAND-SERVICE with eureka with status UP
+2022-05-17 23:58:02,379 INFO com.netflix.discovery.DiscoveryClient$3 [main] Saw local status change event StatusChangeEvent [timestamp=1652849882379, current=UP, previous=STARTING]
+2022-05-17 23:58:02,382 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_SHOPPING-CART-COMMAND-SERVICE/DESKTOP-4JQFJ2O.mshome.net:shopping-cart-command-service:8009: registering service...
+2022-05-17 23:58:02,382 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8009"]
+2022-05-17 23:58:02,411 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8009 (http) with context path ''
+2022-05-17 23:58:02,413 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration [main] Updating port to 8009
+2022-05-17 23:58:02,422 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_SHOPPING-CART-COMMAND-SERVICE/DESKTOP-4JQFJ2O.mshome.net:shopping-cart-command-service:8009 - registration status: 204
+2022-05-17 23:58:02,825 INFO org.springframework.boot.StartupInfoLogger [main] Started Application in 9.825 seconds (JVM running for 10.294)
+2022-05-17 23:58:16,249 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8009-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-17 23:58:16,250 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8009-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-05-17 23:58:16,267 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8009-exec-1] Completed initialization in 16 ms
+2022-05-17 23:58:16,725 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8009-exec-8] Init duration for springdoc-openapi is: 143 ms

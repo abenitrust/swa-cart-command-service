@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 public class CartLine {
     private Product product;
     private int quantity;
-    private double price;
 }
 

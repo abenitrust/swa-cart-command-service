@@ -1,12 +1,12 @@
-package com.swa.application.domain;
+package com.swa.application.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
-    private String customerId;
+@AllArgsConstructor
+public class Order {
+    private String orderNumber;
 }

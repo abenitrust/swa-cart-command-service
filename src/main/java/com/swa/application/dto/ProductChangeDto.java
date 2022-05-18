@@ -11,5 +11,4 @@ public class ProductChangeDto {
     private String cartNumber;
     private String productNumber;
     private int quantity;
-    private double price;
 }

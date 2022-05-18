@@ -1,6 +1,6 @@
 package com.swa.application.service;
 
-import com.swa.application.domain.Customer;
+import com.swa.application.dto.Order;
 import com.swa.application.dto.ProductChangeDto;
 import com.swa.application.dto.ProductDto;
 import com.swa.application.integration.EventService;
@@ -11,6 +11,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -27,39 +28,44 @@ public class CartService {
     private  ShoppingCartRepository shoppingCartRepository;
     private  EventService eventService;
     private  ProductFeignClient productService;
+    private  OrderFeignClient orderService;
 
-    private static final Logger log = LoggerFactory.getLogger(CartService.class);
+    private static final Logger logger = LoggerFactory.getLogger(CartService.class);
 
     @Autowired
-    public CartService(EventService eventService, ShoppingCartRepository shoppingCartRepository, ProductFeignClient productService) {
+    public CartService(EventService eventService, ShoppingCartRepository shoppingCartRepository, ProductFeignClient productService, OrderFeignClient orderService) {
         this.eventService = eventService;
         this.shoppingCartRepository = shoppingCartRepository;
         this.productService = productService;
+        this.orderService = orderService;
     }
 
     public void create(ShoppingCart cart) throws DBException {
         try {
             List<String> errorMsgs = new ArrayList<>();
             boolean stockNotAvailable = false;
-            for (CartLine cartLine : cart.getCartLines()) {
-                Product p = cartLine.getProduct();
-                int productStock = getProductStock(p.getProductNumber());
-                if (cartLine.getQuantity() > productStock) {
-                    errorMsgs.add(
-                            "Selected amount of product "
-                                    + p + " is not available in Stock. Only "
-                                    +  productStock + " are available"
-                    );
+            if(cart.getCartLines() != null) {
+                for (CartLine cartLine : cart.getCartLines()) {
+                    Product p = cartLine.getProduct();
+                    int productStock = getProductStock(p.getProductNumber());
+                    if (cartLine.getQuantity() > productStock) {
+                        errorMsgs.add(
+                                "Selected amount of product "
+                                        + p + " is not available in Stock. Only "
+                                        +  productStock + " are available"
+                        );
 
-                    stockNotAvailable = true;
+                        stockNotAvailable = true;
+                    }
                 }
-            }
 
-            if (stockNotAvailable == true) {
-                throw new DBException(
-                        "Sorry but some products are out of stock: \n" +
-                                String.join(" \n", errorMsgs)
-                );
+                if (stockNotAvailable == true) {
+                    throw new DBException(
+                            "Sorry but some products are out of stock: \n" +
+                                    String.join(" \n", errorMsgs)
+                    );
+                }
+
             }
 
             shoppingCartRepository.save(cart);
@@ -90,7 +96,7 @@ public class CartService {
         }
     }
 
-    public void checkout(String cartNumber) throws DBException {
+    public String checkout(String cartNumber) throws DBException {
         try {
             List<String> errorMsgs = new ArrayList<>();
             ShoppingCart cart = shoppingCartRepository.findById(cartNumber)
@@ -99,29 +105,32 @@ public class CartService {
                     );
 
             boolean stockNotAvailable = false;
+            if(cart.getCartLines() != null) {
+                for (CartLine cartLine : cart.getCartLines()) {
+                    Product p = cartLine.getProduct();
+                    int productStock = getProductStock(p.getProductNumber());
+                    if (cartLine.getQuantity() > productStock) {
+                        errorMsgs.add(
+                                "Selected amount of product "
+                                        + p + " is not available in Stock. Only "
+                                        + productStock + " are available"
+                        );
 
-            for (CartLine cartLine : cart.getCartLines()) {
-                Product p = cartLine.getProduct();
-                int productStock = getProductStock(p.getProductNumber());
-                if (cartLine.getQuantity() > productStock) {
-                    errorMsgs.add(
-                            "Selected amount of product "
-                            + p + " is not available in Stock. Only "
-                            +  productStock + " are available"
+                        stockNotAvailable = true;
+                    }
+                }
+
+                if (stockNotAvailable == true) {
+                    throw new DBException(
+                            "Sorry but some products are out of stock: \n" +
+                                    String.join(" \n", errorMsgs)
                     );
-
-                    stockNotAvailable = true;
                 }
             }
-
-            if (stockNotAvailable == true) {
-                throw new DBException(
-                        "Sorry but some products are out of stock: \n" +
-                                String.join(" \n", errorMsgs)
-                );
-            }
-            delete(cart.getShoppingCartNumber());
-            eventService.sendCartCheckoutMsg(cart);
+            Order order = orderService.prepareOrder(cart);
+            logger.info(cart + "checked out!");
+            delete(cartNumber); // checked out, delete the cart
+            return order.getOrderNumber();
         } catch(Exception e) {
             throw new DBException(e.getMessage());
         }
@@ -140,7 +149,7 @@ public class CartService {
             if(pDto.getQuantity() > productStock) {
                 throw new DBException("Not enough stock for the product. Available amt is: " + productStock);
             }
-            Product newProd = new Product(pDto.getProductNumber(), pDto.getPrice());
+            Product newProd = new Product(pDto.getProductNumber());
             boolean productAdded = cart.addProduct(newProd, pDto.getQuantity());
             if(!productAdded) {
                 throw new DBException("Error occurred when adding product. Please try again");
@@ -184,15 +193,17 @@ public class CartService {
         }
     }
 
-
-    public Customer getCustomer(String customer) {
-        return new Customer();
-    }
-
     @FeignClient("product-service")
     @RibbonClient(name="product-service")
     interface ProductFeignClient{
         @RequestMapping("/api/v1/products/{productNumber}")
         ProductDto getProduct(@PathVariable("productNumber") String productNumber);
+    }
+
+    @FeignClient("order-service")
+    @RibbonClient(name="order-service")
+    interface OrderFeignClient{
+        @RequestMapping("/api/v1/orders/prepare")
+        Order prepareOrder(@RequestBody ShoppingCart cart);
     }
 }

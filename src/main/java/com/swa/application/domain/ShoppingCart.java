@@ -16,9 +16,7 @@ import java.util.List;
 public class ShoppingCart {
     @Id
     private String shoppingCartNumber;
-    private String customerID;
     private List<CartLine> cartLines;
-
 
     public boolean removeProduct(String productNumber) {
         var cartLine = cartLines.stream()
@@ -34,7 +32,7 @@ public class ShoppingCart {
     }
 
     public boolean addProduct(Product p, int quantity) {
-        CartLine newLine = new CartLine(p, quantity, quantity * p.getPrice());
+        CartLine newLine = new CartLine(p, quantity);
         if(cartLines == null) {
             cartLines = new ArrayList<>();
         }
